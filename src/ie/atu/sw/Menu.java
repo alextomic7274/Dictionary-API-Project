@@ -1,24 +1,26 @@
 package ie.atu.sw;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
     private Scanner scanner;
-    private ConfigFileParser parser;
+    private ConfigFileParser configFileParser;
     private String textFilePath = null;
     private Map<String, String> dictionary = new HashMap<>();
     private String outputFile = null;
-    private Parser textFileParser;
+    String dictionaryFile = "./dictionary.csv";
+    String commonwords = "./google-1000.txt";
 
     public Menu() {
         scanner = new Scanner(System.in);
-        parser = new ConfigFileParser();
+        configFileParser = new ConfigFileParser();
     }
 
-    public void startMainMenu() throws InterruptedException, IOException {
+    public void startMainMenu() throws Exception {
         while(true) {
             TextualGUI.showMainMenu();
             int choice = Integer.parseInt(scanner.nextLine());
@@ -33,20 +35,27 @@ public class Menu {
         }
     }
 
-    private void processFile(String type) throws IOException {
-        System.out.print("Specify "+type+" path:");
-        String filePath = scanner.nextLine();
-        switch (type) {
-            case "text file" -> this.textFilePath = filePath;
-            case "dictionary" -> parser.parseFile(filePath);
-            case "common words" -> parser.parseStopWords(filePath);
-            case "output file" -> this.outputFile = filePath;
+    private void processFile(String type) throws Exception {
+        try {
+            System.out.print("Specify "+type+" path:");
+            String filePath = scanner.nextLine();
+            switch (type) {
+                case "text file" -> this.textFilePath = "PrinceMachiavelli.txt";
+                case "dictionary" -> configFileParser.parseFile(dictionaryFile);
+                case "common words" -> configFileParser.parseStopWords(commonwords);
+                case "output file" -> this.outputFile = filePath;
+            }
+        } catch (IOException e) {
+            System.out.println("FILE SELECTION ERROR: TRY AGAIN");
+            Thread.sleep(Duration.ofSeconds(1));
+            startMainMenu();
         }
     }
 
-    private void execute() throws IOException {
-        textFileParser = new TextFileParser(parser, outputFile);
+        private void execute() throws Exception {
+        TextFileParser textFileParser = new TextFileParser(configFileParser, outputFile);
         textFileParser.parseFile(textFilePath);
+        textFileParser.saveIndex(outputFile);
     }
 
 }
