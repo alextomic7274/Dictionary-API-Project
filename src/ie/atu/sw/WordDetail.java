@@ -11,18 +11,21 @@ public class WordDetail implements Comparable<WordDetail>{
     public WordDetail(WordDetail wordDetail) {
         this.word = wordDetail.getWord();
         this.definition = wordDetail.definition;
-        this.pages = wordDetail.pages;
+        this.pages = wordDetail.getPages();
     }
 
     public WordDetail(String word, int page, String definition) {
         pages = new ArrayList<>();
         this.word = word;
-        this.pages.add(page);
         this.definition = definition;
+        this.pages.add(page);
     }
 
-    // Use string buffer here (Thread safe)
-    public void add(int page){
+    public Collection<Integer> getPages() {
+        return pages;
+    }
+
+    public void addPage(int page){
         this.pages.add(page);
     }
 
@@ -39,7 +42,6 @@ public class WordDetail implements Comparable<WordDetail>{
         return pages.size();
     }
 
-    @Override
     public int compareTo(WordDetail wordDetail2) {
         if (this.pages.size() > wordDetail2.getPageTotal()) {
             return 1;

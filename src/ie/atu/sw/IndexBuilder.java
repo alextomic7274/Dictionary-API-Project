@@ -1,32 +1,36 @@
 package ie.atu.sw;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class IndexBuilder {
-    private ConfigFileParser parser = null;
+    private ConfigFileParser configParser = null;
     private WordDetail wordDetail = null;
-    private HashMap<String, WordDetail> index = null;
+
+    private Map<String, WordDetail> index = null;
     private String outputFile = null;
 
-    public IndexBuilder(ConfigFileParser parser, String outputFile) {
+    public IndexBuilder(ConfigFileParser configParser) {
         index = new HashMap<>();
-        this.parser = parser;
-        this.outputFile = outputFile;
+        this.configParser = configParser;
     }
+
 
     public void addToIndex(String word, int page) {
-        String wordCleaned = word.trim().toLowerCase().replaceAll("[^A-Za-z0-9]", "");
-        if (parser.checkStopWords(wordCleaned) || (parser.searchDictionary(wordCleaned) == null)) return;
+        String wordStripped = word.trim().toLowerCase().replaceAll("[^A-Za-z0-9]", "");
+        if ((configParser.checkStopWords(wordStripped)) || (configParser.searchDictionary(wordStripped) == null)) return;
 
-        if (!index.containsKey(word)) {
-            wordDetail = new WordDetail(word, page, parser.searchDictionary(wordCleaned));
-            index.put(word, wordDetail);
+        if (!index.containsKey(wordStripped)) {
+            wordDetail = new WordDetail(wordStripped, page, configParser.searchDictionary(wordStripped));
+            index.put(wordStripped, wordDetail);
+            return;
         }
-        wordDetail = new WordDetail(index.get(word));
-        wordDetail.add(page);
-        index.put(word, wordDetail);
+        wordDetail = new WordDetail(index.get(wordStripped));
+        wordDetail.addPage(page);
+        index.put(wordStripped, wordDetail);
     }
+
+
+
 
     public HashMap<String, WordDetail> getIndex() {
         HashMap<String, WordDetail> temp = new HashMap<>(index);

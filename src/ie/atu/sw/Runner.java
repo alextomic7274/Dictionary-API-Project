@@ -1,17 +1,23 @@
 package ie.atu.sw;
 
-import java.time.Duration;
-
-
+/**
+ * The class Runner is a basic class that implements a main method which starts the application.
+ * @author alex
+ */
 public class Runner {
-	public static void main(String[] args) throws InterruptedException {
+	// Starts the application by creating an instance of Menu and calls startMainMenu()
+	// Running time: O(1)
+
+	/**
+	 * Starts the application at run-time by instantiating a Menu object and calling startMainMenu().
+	 * @param args
+	 */
+	public static void main(String[] args) {
 		Menu m = new Menu();
 		try {
 			m.startMainMenu();
 		} catch (Exception e) {
-			System.out.println("INVALID INPUT: Enter 1-6 Inclusive");
-			Thread.sleep(Duration.ofSeconds(1));
-			main(null);
+			e.printStackTrace();
 		}
 	}
 
