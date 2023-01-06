@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
  *
  * @author alex
  */
-public class ConfigFileParser implements FileParser {
+public class ConfigFileParser extends FileParser {
     private Set<String> stopWords = null;
     private Map<String, String> dictionary = null;
     private StringBuffer tempDefinition;
@@ -34,7 +34,7 @@ public class ConfigFileParser implements FileParser {
     Takes a String filePath as a parameter, utilses an if-else block and
     if filePath contains "dictionary" then it passes each line of the file to a distinct virtual thread that delegates the responsibility
     of adding each line to the dictionary collection, else: it starts a virtual thread for each line of a file and adds each file to a collection.
-    Running time: O(n)
+    Running time: O(n) if processing dictionary, O(1) if processing stopWords.
      */
     /**
      * <p>Parses the file path which virtual threads, if filepath contains "dictionary" then it
@@ -47,7 +47,7 @@ public class ConfigFileParser implements FileParser {
         try {
             if (filePath.contains("dictionary")) {
                 Files.lines(Path.of(filePath))
-                        .forEach(line -> Thread.startVirtualThread(() -> processLine(line))
+                        .forEach(line -> Thread.startVirtualThread(() -> processString(line))
                         );
             } else {
                 Files.lines(Path.of(filePath))
@@ -62,7 +62,7 @@ public class ConfigFileParser implements FileParser {
     /*
     Separates each dictionary line into two strings by comma and adds string 1 as the key and string 2 as the value to a HashMap.
         Removes non-alphabetical characters from word and casts to lower case.
-        Running time: O(1)
+        Running time: Depends on length of string line, O(n) is worst case if split, trim, toL and replaceAll need to traverse the entire string.
      */
     /**
      * <p>Takes a string and splits it into two by regex: "," then adds the first string to a hash map
@@ -71,7 +71,7 @@ public class ConfigFileParser implements FileParser {
      *
      * @param line the string to be processed and added to a data structure
      */
-    public void processLine(String line) {
+    public void processString(String line) {
         String[] tempArray = line.split(",");
         String s = "";
         String word = tempArray[0].trim().toLowerCase().replaceAll("[^A-Za-z0-9]", "");
@@ -81,7 +81,7 @@ public class ConfigFileParser implements FileParser {
 
            /*
     Checks if a word exists in the set by using contains().
-    Running time: O(log n)
+    Running time: O(n) where n is the number of elements in the set.
      */
     /**
      * <p>Takes in a string and returns boolean value based on the strings presence in a set</p>
@@ -96,7 +96,7 @@ public class ConfigFileParser implements FileParser {
     /*
     This method takes a String word, searches the dictionary map for the word and
     if it exists, it returns the word's definition, otherwise it returns null.
-    Running time: O(1)
+    Running time: O(n) worst case overall, as the map might need to be fully searched in the absolute worst case before finding the key.
     */
     /**
      * <p>Searches the data structure storing a dictionary and returns the definition as a string.</p>
