@@ -3,11 +3,11 @@ package ie.atu.sw;
 import java.util.*;
 
 /**
- * <p>WordDetail is a class which is used to store data about a word, including the actual word name, definition and pages
+ * WordDetail is a class which is used to store data about a word, including the actual word name, definition and pages
  * it exists on, stored in a collection.
  *
  * It implements Comparable interface which makes WordDetail objects suitable for comparison when sorting.
- * </p>
+ *
  *
  * @author alex
  */
@@ -20,7 +20,7 @@ public class WordDetail implements Comparable<WordDetail>{
     // This is a cloning constructor which takes a WordDetail obj and clones its state to a new WordDetail.
     // Running time: O(1)
     /**
-     * <p>Cloning constructor which takes a WordDetail object and clones its state to the newly created WordDetail.</p>
+     * Cloning constructor which takes a WordDetail object and clones its state to the newly created WordDetail
      *
      * @param wordDetail is needed for the purpose of object cloning.
      */
@@ -33,8 +33,8 @@ public class WordDetail implements Comparable<WordDetail>{
     // This is a constructor which creates a WordDetail and updates the state based on the parameters.
     // Running time: O(1)
     /**
-     * <p>Constructor that is used to create a new WordDetail, it then updates the state in the object
-     * to the variables entered as parameters.</p>
+     * Constructor that is used to create a new WordDetail, it then updates the state in the object
+     * to the variables entered as parameters.
      *
      * @param word the word to which the object relates to
      * @param page the page which the word was found on
@@ -48,6 +48,7 @@ public class WordDetail implements Comparable<WordDetail>{
     }
 
     /**
+     * Returns the collection of pages
      *
      * @return the collection of pages
      */
@@ -56,6 +57,8 @@ public class WordDetail implements Comparable<WordDetail>{
     }
 
     /**
+     * Adds a page to the collection of pages
+     *
      * @param page which is added to the collection
      */
     public void addPage(int page){
@@ -65,7 +68,7 @@ public class WordDetail implements Comparable<WordDetail>{
     // Overrides toString() and returns a string containing the definition and pages.
     // Running time: O(n) as it depends on size of unique pages, it could iterate n times to copy it to a new Set.
     /**
-     * <p>Overrides toString() for WordDetail, and returns a string containing all important data about this object</p>
+     * Overrides toString() for WordDetail, and returns a string containing all important data about this object
      *
      * @return a string containing definition and a collection of individual poges, the word is found on.
      */
@@ -77,6 +80,8 @@ public class WordDetail implements Comparable<WordDetail>{
     }
 
     /**
+     * Returns the word corresponding to this WordDetail
+     *
      * @return the word corresponding to this object
      */
     public String getWord () { return word; }
@@ -84,6 +89,7 @@ public class WordDetail implements Comparable<WordDetail>{
     // Implements compareTo() and makes object eligible for sorting.
     // Running time: O(1) as an ArrayList knows its last index, thus it can determine the size instantly.
     /**
+     * Returns the size of the collection storing pages
      *
      * @return size of collection storing pages
      */

@@ -2,8 +2,16 @@ package ie.atu.sw;
 
 import java.time.Duration;
 
+/**
+ * A class which provides methods that print the menu and loading bar to the screen.
+ *
+ * @author alex
+ */
 public class TextualGUI {
 
+    /**
+     * Prints the main menu to the screen
+     */
     public static void showMainMenu() {
         System.out.println(ConsoleColour.WHITE);
         System.out.println("************************************************************");
@@ -23,6 +31,11 @@ public class TextualGUI {
         System.out.println();
     }
 
+    /**
+     * Starts the loading bar by calling printProgress in a loop
+     *
+     * @throws InterruptedException
+     */
     public static void startLoadingBar() throws InterruptedException {
         System.out.print(ConsoleColour.YELLOW);
         int size = 100;
@@ -32,6 +45,12 @@ public class TextualGUI {
         }
     }
 
+    /**
+     * Prints the progress bar to the screen
+     *
+     * @param index the index where the bar currently is from start-finish
+     * @param total the total of the bar completed
+     */
     public static void printProgress(int index, int total) {
         if (index > total) return;
         int size = 50;

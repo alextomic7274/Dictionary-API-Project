@@ -6,9 +6,9 @@ import java.nio.file.Path;
 import java.util.*;
 
 /**
- * <p>This class offers methods responsible for parsing a text file and it delegates the responsibilty of
+ * This class offers methods responsible for parsing a text file and it delegates the responsibilty of
  * building an index to a class called IndexBuilder, as a result it depends on an IndexBuilder to work
- * properly./p>
+ * properly.
  *
  *
  * @author alex

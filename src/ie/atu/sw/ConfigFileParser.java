@@ -9,10 +9,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 /**
- * <p>An implementation of the interface Parser, the role of ConfigFileParser is to provide methods that can configure the files needed
+ * An implementation of the interface Parser, the role of ConfigFileParser is to provide methods that can configure the files needed
  * to build a word/definition/pages index. It also provides methods that can be used to search the dictionary
  * and check if a word is in a common words list.
- * </p>
+ *
  *
  * @author alex
  */
@@ -23,7 +23,7 @@ public class ConfigFileParser extends FileParser {
     private boolean isParsingDictionary = false;
 
     /**
-     * <p>Constructor which instantiates collections that store stopWords and dictionary.</p>
+     * Constructor which instantiates collections that store stopWords and dictionary.
      */
     public ConfigFileParser() {
         stopWords = new ConcurrentSkipListSet<>();
@@ -37,9 +37,9 @@ public class ConfigFileParser extends FileParser {
     Running time: O(n) if processing dictionary, O(1) if processing stopWords.
      */
     /**
-     * <p>Parses the file path which virtual threads, if filepath contains "dictionary" then it
+     * Parses the file path which virtual threads, if filepath contains "dictionary" then it
      * processes it accordingly, if anything else, it treats it as a stopWords file and adds each line to
-     * a set.</p>
+     * a set.
      *
      * @param filePath the string of the filepath from a visible directory which is to be parsed
      */
@@ -65,9 +65,9 @@ public class ConfigFileParser extends FileParser {
         Running time: Depends on length of string line, O(n) is worst case if split, trim, toL and replaceAll need to traverse the entire string.
      */
     /**
-     * <p>Takes a string and splits it into two by regex: "," then adds the first string to a hash map
+     * Takes a string and splits it into two by regex: "," then adds the first string to a hash map
      * as a key and the second as a value. It is implemented to specifically add dictionary lines that separate the word and
-     * definition with a comma. </p>
+     * definition with a comma.
      *
      * @param line the string to be processed and added to a data structure
      */
@@ -84,7 +84,7 @@ public class ConfigFileParser extends FileParser {
     Running time: O(n) where n is the number of elements in the set.
      */
     /**
-     * <p>Takes in a string and returns boolean value based on the strings presence in a set</p>
+     * Takes in a string and returns boolean value based on the strings presence in a set
      *
      * @param word is the string which is checked against the set
      * @return true if word exists in the set, false otherwise
@@ -99,7 +99,7 @@ public class ConfigFileParser extends FileParser {
     Running time: O(n) worst case overall, as the map might need to be fully searched in the absolute worst case before finding the key.
     */
     /**
-     * <p>Searches the data structure storing a dictionary and returns the definition as a string.</p>
+     * Searches the data structure storing a dictionary and returns the definition as a string.
      *
      * @param word the word which a definition is needed for
      * @return a word's definition if the collection contains the specified word

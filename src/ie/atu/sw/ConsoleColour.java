@@ -1,5 +1,10 @@
 package ie.atu.sw;
 
+/**
+ * An ENUM which provides the most common colours.
+ *
+ * @author alex
+ */
 public enum ConsoleColour { 
 	//Reset
     RESET						("Reset",						"0"),

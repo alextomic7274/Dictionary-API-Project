@@ -14,7 +14,7 @@ public class IndexBuilder {
     private Map<String, WordDetail> index = null;
 
     /**
-     * <p>Constructs a new instance of the class, using the specified ConfigParser as a parameter.</p>
+     * Constructs a new instance of the class, using the specified ConfigParser as a parameter.
      *
      * @param configParser The object to use as a parameter
      */

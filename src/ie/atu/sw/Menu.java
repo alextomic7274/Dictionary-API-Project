@@ -1,5 +1,7 @@
 package ie.atu.sw;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -73,6 +75,7 @@ public class Menu {
     // plus dictionary and stopWords to be configured.
     // Running time: Hard to determine accurate as it depends on all the called methods beyond this class.
     private void executeBuildIndex() throws Exception {
+        TextualGUI.startLoadingBar();
         IndexBuilder builder = new IndexBuilder(configFileParser);
         TextFileParser textFileParser = new TextFileParser(builder);
         textFileParser.parseFile(textFilePath);

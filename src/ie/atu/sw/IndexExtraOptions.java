@@ -27,6 +27,8 @@ public class IndexExtraOptions {
     // Returns total unique words by using keyset.size() on index map.
     // Running time: O(1)
     /**
+     * Returns total unique words that exist in the collection
+     *
      * @return total unique word count in the collection
      */
     public int getTotalUniqueWords() {
