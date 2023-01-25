@@ -1,0 +1,9 @@
+A computer is an electronic device that processes and stores data according to instructions provided by a software program. The central processing unit (CPU) is the "brain" of the computer, responsible for executing instructions and performing calculations. Data is stored in the computer's memory, which can be accessed by the CPU as needed.
+
+Input devices, such as a keyboard or mouse, allow users to input data into the computer. Output devices, such as a monitor or printer, display or print the results of the computer's processing.
+
+The computer's hardware, such as the CPU and memory, is connected by a motherboard, which allows data to be transferred between components. The hardware is powered by a power supply unit, which converts electrical energy into the power needed to run the computer.
+
+Computers also have a system bus, which is a set of connections that allow data to be transferred between the various hardware components. The computer's operating system, such as Windows or macOS, controls the overall operation of the computer and coordinates the various hardware and software components.
+
+In short, a computer receives input, processes it according to a set of instructions, and produces output, all while storing and accessing data as needed.
